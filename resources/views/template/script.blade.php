@@ -43,7 +43,6 @@
                         $.ajax({
                             type: "DELETE",
                             url: 'master_pic/' + deleteid,
-                            url: 'master_kendaraan/' + deleteid,
 
                             data: data,
                             success: function (response) {
