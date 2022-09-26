@@ -7,12 +7,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Login</title>
+    <title>Register</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../resources/css/app.css">
+    <link rel="stylesheet" type="text/css" href="/public/bootstrap/css/bootstrap.min.css">
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('template/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -24,6 +25,7 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @vite(['resources/css/app.css'])
+    @vite(['resources/img/image_register.jpg'])
 </head>
 <body class="bg-primary">
     <div id="app">
@@ -34,5 +36,6 @@
         </main>
     </div>
 
+    
 </body>
 </html>

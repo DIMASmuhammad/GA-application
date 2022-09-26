@@ -94,7 +94,8 @@ class MasterLokasiAssetController extends Controller
         {
             $id = MasterLokasiAsset::find($id);
             $id->delete();
-        Alert::success('Berhasil', 'Data Berhasil Dihapus');
-        return redirect()->route('master_lokasiasset.index');
+        // Alert::success('Berhasil', 'Data Berhasil Dihapus');
+        // return redirect()->route('master_lokasiasset.index');
+        return response()->json(['status' => 'Data Berhasil di hapus!']);
         }
 }

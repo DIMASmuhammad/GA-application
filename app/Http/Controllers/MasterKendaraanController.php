@@ -93,7 +93,8 @@ class MasterKendaraanController extends Controller
         {
             $id = MasterKendaraan::find($id);
             $id->delete();
-        Alert::success('Berhasil', 'Data Berhasil Dihapus');
-        return redirect()->route('master_pic.index');
+        // Alert::success('Berhasil', 'Data Berhasil Dihapus');
+        // return redirect()->route('master_pic.index');
+        return response()->json(['status' => 'Data Berhasil di hapus!']);
         }
 }

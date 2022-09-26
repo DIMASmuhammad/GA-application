@@ -99,7 +99,8 @@ class MasterVendorController extends Controller
         {
             $id = MasterVendor::find($id);
             $id->delete();
-        Alert::success('Berhasil', 'Data Berhasil Dihapus');
-        return redirect()->route('master_vendor.index');
+        // Alert::success('Berhasil', 'Data Berhasil Dihapus');
+        // return redirect()->route('master_vendor.index');
+        return response()->json(['status' => 'Data Berhasil di hapus!']);
         }
 }

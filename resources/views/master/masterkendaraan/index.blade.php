@@ -11,7 +11,7 @@
     </div>
     <div class="card-body">
       <div class="table-responsive">
-        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <table class="table table-bordered border" id="dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
                 <th>Nama Kendaraan</th>
@@ -21,12 +21,13 @@
           <tbody>
             @foreach ($datakendaraan as $kendaraan)
             <tr>
+              <input type="hidden" class="delete_id" value="{{ $kendaraan->id }}">
               <td>{{ $kendaraan->mk_nama_kendaraan }}</td>
               <td><a class="btn btn-warning" href="{{ route('master_kendaraan.edit',$kendaraan->id) }}">Edit</a>
                 <form action="{{ route('master_kendaraan.destroy',$kendaraan->id) }}" method="post" class="d-inline">
                     @csrf
                     @method('delete')
-                    <input class="btn btn-danger" type="submit" value="Delete">
+                    <input class="btn btn-danger btndelete" type="submit" value="Delete">
                 </form>
             </td>
             </tr>
@@ -38,5 +39,55 @@
       </div>
     </div>
   </div>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  <script>
+      $(document).ready(function () {
+
+          $.ajaxSetup({
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+          });
+
+          $('.btndelete').click(function (e) {
+              e.preventDefault();
+
+              var deleteid = $(this).closest("tr").find('.delete_id').val();
+
+              swal({
+                      title: "Apakah anda yakin?",
+                      text: "Setelah dihapus, Anda tidak dapat memulihkan Data ini lagi!",
+                      icon: "warning",
+                      buttons: true,
+                      dangerMode: true,
+                  })
+                  .then((willDelete) => {
+                      if (willDelete) {
+
+                          var data = {
+                              "_token": $('input[name=_token]').val(),
+                              'id': deleteid,
+                          };
+                          $.ajax({
+                              type: "DELETE",
+                              url: 'master_kendaraan/' + deleteid,
+                              data: data,
+                              success: function (response) {
+                                  swal(response.status, {
+                                          icon: "success",
+                                      })
+                                      .then((result) => {
+                                          location.reload();
+                                      });
+                              }
+                          });
+                      }
+                  });
+          });
+
+      });
+
+  </script>
 @endsection
 

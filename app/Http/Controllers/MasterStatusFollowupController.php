@@ -94,8 +94,9 @@ class MasterStatusFollowupController extends Controller
         {
             $id = MasterStatusFollowup::find($id);
             $id->delete();
-        Alert::success('Berhasil', 'Data Berhasil Dihapus');
-        return redirect()->route('master_statusfollowup.index');
+        // Alert::success('Berhasil', 'Data Berhasil Dihapus');
+        // return redirect()->route('master_statusfollowup.index');
+        return response()->json(['status' => 'Data Berhasil di hapus!']);
         }
 
 }
